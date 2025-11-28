@@ -1,5 +1,4 @@
-using Infrastructure.Persistence;
-using Microsoft.EntityFrameworkCore;
+using Infrastructure.DI;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,10 +9,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<MiniShopDbContext>(option =>
-{
-    option.UseSqlServer(builder.Configuration.GetConnectionString("MiniShopConnection"));
-});
+builder.Services.AddMiniShopPersistance(builder.Configuration);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

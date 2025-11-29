@@ -1,4 +1,5 @@
 ﻿using Application.Category.Command;
+using Application.Category.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,7 +26,13 @@ namespace Api.Controllers
         [HttpGet("{id:guid}")]
         public async Task<IActionResult> GetById(Guid id)
         {
-            return Ok();
+            var result = await _mediator.Send(new GetCategoryByIdQuery(id));
+
+            if(result == null)
+                return NotFound();
+
+
+            return Ok(result);
         }
     }
 }

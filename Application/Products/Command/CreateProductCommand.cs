@@ -2,7 +2,7 @@
 
 namespace Application.Products.Command;
 
-public record CreateProductCommand(
+public sealed record CreateProductCommand(
     string name , 
     decimal price , 
     string description , 

@@ -5,6 +5,7 @@ namespace Domain.Category;
 public class Category : AggregateRoot<Guid>
 {
     public CategoryName Name { get; private set; }
+
     private Category()
     {
         

@@ -20,6 +20,7 @@ public static class PersistenceModule
         });
 
         services.AddScoped<IProductRepository, ProductRepository>();
+        services.AddScoped<ICategoryRepository, CategoryRepositories>();
 
         return services;
     }

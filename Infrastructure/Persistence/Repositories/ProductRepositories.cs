@@ -18,6 +18,7 @@ public class ProductRepository : IProductRepository
     public async Task AddAsync(Product product, CancellationToken cancellationToken = default)
     {
         await dbContext.Products.AddAsync(product, cancellationToken);
+        dbContext.SaveChanges();
     }
 
     public async Task<Product?> GetByIdAsync(Guid id, CancellationToken ct = default)

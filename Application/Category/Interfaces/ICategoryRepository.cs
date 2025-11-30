@@ -7,4 +7,6 @@ public interface ICategoryRepository
     Task<Category> GetByCategoryId(Guid id, CancellationToken ct);
 
     Task<int> SaveChangesAsync(CancellationToken ct = default);
+
+    Task RemoveCategoryById(Guid id, CancellationToken ct = default);
 }

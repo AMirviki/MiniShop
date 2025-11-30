@@ -33,5 +33,16 @@ namespace Api.Controllers
 
             return Ok(result);
         }
+
+        [HttpDelete("{id:guid}")]
+        public async Task<IActionResult> Remove(Guid id)
+        {
+            var result = await _mediator.Send(new RemoveProductCommand(id));
+
+            if (result == false)
+                return NotFound();
+
+            return Ok(result);
+        }
     }
 }

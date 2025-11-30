@@ -26,6 +26,13 @@ public class ProductRepository : IProductRepository
         return await dbContext.Products.FirstOrDefaultAsync(p=>p.Id == id , ct);
     }
 
+    public async Task RemoveProductById(Guid id, CancellationToken cancellationToken)
+    {
+        var product = await dbContext.Products.FirstOrDefaultAsync(p => p.Id == id);
+
+        dbContext.Products.Remove(product);
+    }
+
     public Task<int> SaveChangesAsync(CancellationToken ct = default)
     {
         return dbContext.SaveChangesAsync(ct);  

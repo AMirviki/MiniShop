@@ -26,9 +26,16 @@ public class CategoryRepositories : ICategoryRepository
         return await _dbContext.Categories
           .FirstOrDefaultAsync(c => c.Id == id, ct);
     }
-
     public Task<int> SaveChangesAsync(CancellationToken ct = default)
     {
         return _dbContext.SaveChangesAsync(ct);
+    }
+
+    async Task ICategoryRepository.RemoveCategoryById(Guid id, CancellationToken ct)
+    {
+        var category = await _dbContext.Categories.FirstOrDefaultAsync(c => c.Id == id, ct);
+
+        _dbContext.Remove(category);
+
     }
 }

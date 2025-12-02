@@ -44,5 +44,20 @@ namespace Api.Controllers
 
             return Ok(result);
         }
+
+
+        [HttpPut("{id:guid}")]
+        public async Task<IActionResult> Update(Guid id, string name , decimal price , string description
+           ,Guid categoryId )
+        {
+            var result = await _mediator.Send(new UpdateProductCommand(id, name , price , description , categoryId));
+
+            if (result == null)
+
+                return NotFound();
+
+
+            return Ok(result);
+        }
     }
 }

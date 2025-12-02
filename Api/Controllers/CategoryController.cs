@@ -47,5 +47,18 @@ namespace Api.Controllers
             return Ok(result);
         }
 
+        [HttpPut("{id:guid}")]
+        public async Task<IActionResult> Update(Guid id , string name)
+        {
+            var result = await _mediator.Send(new UpdateCategoryCommand(id,name));
+
+            if (result == null)
+
+                return NotFound();
+
+
+            return Ok(result);
+        }
+
     }
 }

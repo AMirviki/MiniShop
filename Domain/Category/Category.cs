@@ -21,5 +21,9 @@ public class Category : AggregateRoot<Guid>
         return new Category(name , Guid.NewGuid()); 
     }
 
+    public void ChangeName(string newName)
+    {
+        Name = CategoryName.Create(newName);
+    }
 
 }
